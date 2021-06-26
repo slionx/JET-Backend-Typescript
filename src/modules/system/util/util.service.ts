@@ -1,5 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
-import fs from 'fs';
+import { dir } from "console";
+import * as fs from "fs";
+import * as path from "path";
 
 @Injectable()
 export class UtilService {
@@ -11,24 +13,56 @@ export class UtilService {
         this.logger.log("JET util initialized.");
     }
 
-    isType(data, string) { return typeof data == string; }
-
-    jsonLoad(path)
-    {
-        return fs.readFileSync(path, 'utf8')
+    jsonLoad(path: number | fs.PathLike) {
+        return fs.readFileSync(path, "utf8");
     }
 
-    jsonLoadParse(path){
+    jsonLoadParse(path: number | fs.PathLike) {
+        if (!(path as string).includes(".json")) {
+            return;
+        }
+
         return JSON.parse(this.jsonLoad(path));
     }
 
-    jsonSave(data_to_save, path_to_file_to_save)
-    {
-        fs.writeFileSync(path_to_file_to_save, JSON.stringify(data_to_save));
+    jsonSave(dataToSave: any, pathToFileToSave: number | fs.PathLike) {
+        fs.writeFileSync(pathToFileToSave, JSON.stringify(dataToSave));
     }
 
-    getFileNamesInDir(directory)
-    {
+    getFileNamesInDir(directory: fs.PathLike) {
         return fs.readdirSync(directory);
+    }
+
+    getDatabaseRecursive(filePath: string) {
+        let tempData = {};
+
+        const readedFolder = fs.readdirSync(filePath);
+
+        const directories = readedFolder.filter((file) => {
+            return fs.statSync(filePath + "/" + file).isDirectory();
+        });
+
+        const files = readedFolder.filter((file) => {
+            return fs.statSync(filePath + "/" + file).isFile();
+        });
+
+        let i = 0,
+            len = files.length;
+        while (i < len) {
+            tempData[files[i].split(".")[0]] = this.jsonLoadParse(
+                path.resolve(filePath + files[i]),
+            );
+            i++;
+        }
+
+        (i = 0), (len = directories.length);
+        while (i < len) {
+            tempData[directories[i]] = this.getDatabaseRecursive(
+                filePath + directories[i] + "/",
+            );
+            i++;
+        }
+
+        return tempData;
     }
 }

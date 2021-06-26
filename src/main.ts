@@ -1,6 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { CoreService } from "./modules/system/core/core.service";
+import { UtilService } from "./modules/system/util/util.service";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -9,7 +10,6 @@ async function bootstrap() {
     coreService.init();
 
     await app.listen(3000);
-
 }
 
 bootstrap();
