@@ -9,6 +9,7 @@ async function bootstrap() {
     coreService.init();
 
     await app.listen(3000);
+
 }
 
 bootstrap();
