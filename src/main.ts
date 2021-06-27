@@ -9,7 +9,7 @@ async function bootstrap() {
 
     coreService.init();
 
-    await app.listen(3000);
+    await app.listen(coreService.config.port, coreService.config.ipAddress);
 }
 
 bootstrap();

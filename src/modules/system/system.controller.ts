@@ -2,10 +2,10 @@ import { Controller, Get } from '@nestjs/common';
 
 @Controller()
 export class SystemController {
-    constructor(/*private readonly appService: AppService*/) {}
+    constructor() {}
 
     @Get()
     getIndex(): string {
-            return "Loaded Home Page...!";
+            return "That Suposed to be homepage??";
     }
 }
