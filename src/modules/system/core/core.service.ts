@@ -11,7 +11,7 @@ export class CoreService {
 
     db: IDatabase = {};
     config: IConfig = {};
-
+    users: {};
     init() {
         this.loadConfig();
         this.loadDatabase();
