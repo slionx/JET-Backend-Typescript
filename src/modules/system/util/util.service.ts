@@ -13,6 +13,8 @@ export class UtilService {
         this.logger.log("JET util initialized.");
     }
 
+    getWorkingDir(){ return process.cwd(); }
+
     jsonLoad(path: number | fs.PathLike) {
         return fs.readFileSync(path, "utf8");
     }
