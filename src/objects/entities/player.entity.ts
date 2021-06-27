@@ -38,9 +38,11 @@ export class Player extends BaseObject implements IEntity {
         skills: {} as cSkills,
         traders: {} as { [key: string]: cTraderStanding }
     };
+
     customizationStorage: object;
     messageInbox: object;
     userWeaponBuilds: object;
+
     preparedPMCProfile(){
         let profile = this.character.base;
         profile.Hideout = this.character.hideout;
@@ -50,6 +52,7 @@ export class Player extends BaseObject implements IEntity {
         profile.TraderStandings = this.character.traders;
         return profile;
     }
+    
     private loadProfileData(){
         this.character.base = this.utilService.jsonLoadParse(this.userFolder() + "character_base.json");
         this.character.hideout = this.utilService.jsonLoadParse(this.userFolder() + "character_hideout.json");
