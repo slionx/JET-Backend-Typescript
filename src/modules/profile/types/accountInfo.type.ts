@@ -1,4 +1,4 @@
-type accountInfo {
+type accountInfo = {
     login: string,
     password: string,
 }
