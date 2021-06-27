@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { AccountModule } from "./modules/account/account.module";
 import { BattleModule } from "./modules/battle/battle.module";
+import { EntityModule } from "./modules/entity/entity.module";
 import { HideoutModule } from "./modules/hideout/hideout.module";
 import { InventoryModule } from "./modules/inventory/inventory.module";
 import { MiscModule } from "./modules/misc/misc.module";
@@ -18,6 +19,7 @@ import { TradeModule } from "./modules/trade/trade.module";
         MiscModule,
         ProfileModule,
         TradeModule,
+        EntityModule,
     ],
     controllers: [],
 })
