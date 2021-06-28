@@ -1,5 +1,7 @@
 import { PathLike } from "fs";
 
+// This is wrong
+
 enum Currency { // TODO: Move to another class
     RUB = "5449016a4bdc2d6f028b456f",
     USD = "",
