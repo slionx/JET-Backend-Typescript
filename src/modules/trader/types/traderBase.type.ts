@@ -4,8 +4,8 @@ import { PathLike } from "fs";
 
 enum Currency { // TODO: Move to another class
     RUB = "5449016a4bdc2d6f028b456f",
-    USD = "",
-    EUR = "",
+    USD = "5696686a4bdc2da3298b456a",
+    EUR = "569668774bdc2da2298b4568",
 }
 
 enum CurrencyString { // TODO: Move to another class
@@ -18,7 +18,7 @@ type TRepair = {
     availability: boolean;
     quality: number;
     excluded_id_list: string[];
-    excluded_category: object[]; // Double check this type.
+    excluded_category: string[]; // Double check this type. // should be string[]
     currency: Currency;
     currency_coefficient: number;
     price_rate: number;
@@ -30,7 +30,7 @@ type TInsurance = {
     min_return_hour: number;
     max_return_hour: number;
     max_storage_time: number;
-    excluded_category: object[]; // Double check this type.
+    excluded_category: string[]; // Double check this type. // should be string[]
 };
 
 type Trader = {
