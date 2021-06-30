@@ -1,4 +1,4 @@
-type cSkills = {
+export type characterSkills = {
     Common: CommonSkill[],
     Mastering: MasteringSkill[],
     Points: number

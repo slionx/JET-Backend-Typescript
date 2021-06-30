@@ -6,7 +6,7 @@ import { MiscModule } from "./modules/misc/misc.module";
 import { ObjectsModule } from "./modules/objects/objects.module";
 import { ProfileModule } from "./modules/profile/profile.module";
 import { SystemModule } from "./modules/system/system.module";
-import { TradeModule } from "./modules/trade/trade.module";
+import { TraderModule } from "./modules/trader/trader.module";
 
 @Module({
     imports: [
@@ -16,7 +16,7 @@ import { TradeModule } from "./modules/trade/trade.module";
         InventoryModule,
         MiscModule,
         ProfileModule,
-        TradeModule,
+        TraderModule,
         ObjectsModule,
     ],
     controllers: [],

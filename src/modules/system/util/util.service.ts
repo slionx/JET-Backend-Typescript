@@ -7,10 +7,7 @@ import * as path from "path";
 export class UtilService {
     private readonly logger = new Logger(UtilService.name);
 
-    constructor() {}
-
-    init() {
-        this.logger.log("JET util initialized.");
+    constructor() {
     }
 
     getWorkingDir(){ return process.cwd(); }

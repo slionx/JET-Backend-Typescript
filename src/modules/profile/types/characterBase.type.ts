@@ -1,4 +1,10 @@
-type characterBase = {
+import { characterHideout } from "./characterHideout.type"
+import { characterInventory } from "./characterInventory.type"
+import { characterQuest } from "./characterQuest.type"
+import { characterSkills } from "./characterSkills.type"
+import { characterTraderStanding } from "./traderStanding.type"
+
+export type characterBase = {
     _id: string,
     aid: string,
     savage: string,
@@ -10,18 +16,18 @@ type characterBase = {
         Hands: string
     },
     Health: cHealth,
-    Inventory: object,
-    Skills: object,
+    Inventory: characterInventory,
+    Skills: characterSkills,
     Stats: cStats,
     Encyclopedia: { [key: string]: boolean },
     ConditionCounters: { Counters: object[] },
     BackendCounters: object,
     InsuredItems: object[],
-    Hideout: object,
+    Hideout: characterHideout,
     Bonuses: object[],
     Notes: { Notes: object[] },
-    Quests: object[],
-    TraderStandings: object,
+    Quests: characterQuest[],
+    TraderStandings: { [key: string]: characterTraderStanding },
     RagfairInfo: cRagfairInfo,
     WishList: object[]
 }

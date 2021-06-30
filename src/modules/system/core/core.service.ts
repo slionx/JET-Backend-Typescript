@@ -2,6 +2,7 @@ import { Injectable, Logger } from "@nestjs/common";
 import { UtilService } from "../util/util.service";
 import { IDatabase } from "./interfaces/db.interface";
 import { IConfig } from "./interfaces/config.interface";
+import { User } from "./entity/user.entity";
 
 @Injectable()
 export class CoreService {
@@ -15,8 +16,17 @@ export class CoreService {
     init() {
         this.loadConfig();
         this.loadDatabase();
-
+        this.loadUsers();
         this.logger.log("JET initialized.");
+    }
+
+    private loadUsers(){
+        const profilesFolders = this.utilService.getFileNamesInDir(`${this.utilService.getWorkingDir()}/users`);
+        this.users = {};
+        for(const userId of profilesFolders){
+            this.users[userId] = new User(userId);
+        }
+        
     }
 
     private loadDatabase() {
@@ -26,6 +36,7 @@ export class CoreService {
     }
 
     private loadConfig() {
+        this.logger.log("Loading config");
         try {
             this.config = this.utilService.jsonLoadParse(
                 `${this.utilService.getWorkingDir()}/config.json`,
@@ -43,8 +54,8 @@ export class CoreService {
 
         if (
             !this.config.ipAddress.match(
-                /^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\d)|1?\d?\d)){4}$/,
-            ) ||
+                /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/,
+            ) &&
             this.config.ipAddress != "localhost"
         ) {
             this.logger.error(

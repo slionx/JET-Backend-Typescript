@@ -1,4 +1,4 @@
-import { ObjectType } from "src/objects/base.object";
+import { ObjectType } from "src/modules/objects/base.object.class";
 
 // Missing static all
 export interface IEntity {
