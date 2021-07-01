@@ -13,6 +13,7 @@ export class CoreService {
     db: IDatabase = {};
     config: IConfig = {};
     users: {};
+    itemsList: {};
     init() {
         this.loadConfig();
         this.loadDatabase();
@@ -28,13 +29,11 @@ export class CoreService {
         }
         
     }
-
     private loadDatabase() {
         this.db = this.utilService.getDatabaseRecursive(
             `${this.utilService.getWorkingDir()}/database/`,
         );
     }
-
     private loadConfig() {
         this.logger.log("Loading config");
         try {
@@ -63,5 +62,19 @@ export class CoreService {
             );
             this.config.ipAddress = "127.0.0.1";
         }
+    }
+    getItemList(){
+        if(this.itemsList == undefined)
+        {
+            this.itemsList = {};
+            for(const category in this.db.items){
+                for(const item in this.db.items[category]){
+                    const itemToSave = this.db.items[category][item];
+                    const id = itemToSave._id;
+                    this.itemsList[id] = itemToSave;
+                }
+            }
+        }
+        return this.itemsList;
     }
 }
