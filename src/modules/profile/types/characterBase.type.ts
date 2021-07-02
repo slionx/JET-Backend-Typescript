@@ -27,9 +27,14 @@ export type characterBase = {
     Bonuses: object[],
     Notes: { Notes: object[] },
     Quests: characterQuest[],
-    TraderStandings: { [key: string]: characterTraderStanding },
+    TraderInfo: {[key: string]: TraderInfo},
     RagfairInfo: cRagfairInfo,
     WishList: object[]
+}
+type TraderInfo = {
+    saleSum: number,
+    standing: number,
+    unlocked: boolean
 }
 type cRagfairInfo = {
     rating: number,
@@ -37,7 +42,6 @@ type cRagfairInfo = {
     offers: object[]
 }
 type cStats = {
-    SessionCounters: null,
     OverallCounters: {
         Items: object[]
     },
@@ -82,26 +86,29 @@ type currMaxAmount = {
     Maximum: number
 }
 type cInformation = {
-    Nickname: string,
+    AccountType: number,
+    BannedState: boolean,
+    BannedUntil: number,
+    Bans: object[],
+    Experience: number,
+    GameVersion: string,
+    IsStreamerModeAvailable: boolean,
+    LastTimePlayedAsSavage: number,
+    Level: number,
     LowerNickname: string,
+    MemberCategory: number,
+    NeedWipeOptions: object[],
+    Nickname: string,
+    NicknameChangeDate: number,
+    RegistrationDate: number,
+    SavageLockTime: number,
+    Settings: {
+        BotDifficulty: string,
+        Experience: number,
+        Role: string
+    },
     Side: string,
     Voice: string,
-    Level: number,
-    Experience: number,
-    RegistrationDate: number,
-    GameVersion: string,
-    AccountType: number,
-    MemberCategory: number,
-    lockedMoveCommands: boolean,
-    SavageLockTime: number,
-    LastTimePlayedAsSavage: number,
-    Settings: {
-        Role: string,
-        BotDifficulty: string,
-        Experience: number
-    },
-    NeedWipe: boolean,
-    GlobalWipe: boolean,
-    NicknameChangeDate: number,
-    Bans: object[]
+    lastCompletedWipe: {[key: string]: string},
+    lockedMoveCommands: boolean
 }
