@@ -1,4 +1,4 @@
-type characterHideout = {
+export type characterHideout = {
     Production: object,
     Areas: Area[]
 }

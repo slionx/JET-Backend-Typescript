@@ -1,4 +1,4 @@
-type characterInventory = {
+export type characterInventory = {
     items: Item[],
     equipment: string,
     stash: string,

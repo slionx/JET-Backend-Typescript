@@ -1,3 +1,5 @@
+// This is wrong
+
 type BarterItem = {
     count: number;
     _tpl: string;

@@ -24,6 +24,10 @@
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/platform-express": "^7.6.15",
+    "compression": "^1.7.4",
+    "fastify": "^3.18.1",
+    "fastify-compress": "^3.6.0",
+    "nest": "^0.1.6",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6"

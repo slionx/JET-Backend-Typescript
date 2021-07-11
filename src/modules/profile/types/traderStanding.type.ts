@@ -1,4 +1,4 @@
-type cTraderStanding = {
+export type characterTraderStanding = {
         currentLevel: number,
         currentSalesSum: number,
         currentStanding: number,

@@ -1,4 +1,10 @@
-type characterBase = {
+import { characterHideout } from "./characterHideout.type"
+import { characterInventory } from "./characterInventory.type"
+import { characterQuest } from "./characterQuest.type"
+import { characterSkills } from "./characterSkills.type"
+import { characterTraderStanding } from "./traderStanding.type"
+
+export type characterBase = {
     _id: string,
     aid: string,
     savage: string,
@@ -10,20 +16,25 @@ type characterBase = {
         Hands: string
     },
     Health: cHealth,
-    Inventory: object,
-    Skills: object,
+    Inventory: characterInventory,
+    Skills: characterSkills,
     Stats: cStats,
     Encyclopedia: { [key: string]: boolean },
     ConditionCounters: { Counters: object[] },
     BackendCounters: object,
     InsuredItems: object[],
-    Hideout: object,
+    Hideout: characterHideout,
     Bonuses: object[],
     Notes: { Notes: object[] },
-    Quests: object[],
-    TraderStandings: object,
+    Quests: characterQuest[],
+    TraderInfo: {[key: string]: TraderInfo},
     RagfairInfo: cRagfairInfo,
     WishList: object[]
+}
+type TraderInfo = {
+    saleSum: number,
+    standing: number,
+    unlocked: boolean
 }
 type cRagfairInfo = {
     rating: number,
@@ -31,7 +42,6 @@ type cRagfairInfo = {
     offers: object[]
 }
 type cStats = {
-    SessionCounters: null,
     OverallCounters: {
         Items: object[]
     },
@@ -76,26 +86,29 @@ type currMaxAmount = {
     Maximum: number
 }
 type cInformation = {
-    Nickname: string,
+    AccountType: number,
+    BannedState: boolean,
+    BannedUntil: number,
+    Bans: object[],
+    Experience: number,
+    GameVersion: string,
+    IsStreamerModeAvailable: boolean,
+    LastTimePlayedAsSavage: number,
+    Level: number,
     LowerNickname: string,
+    MemberCategory: number,
+    NeedWipeOptions: object[],
+    Nickname: string,
+    NicknameChangeDate: number,
+    RegistrationDate: number,
+    SavageLockTime: number,
+    Settings: {
+        BotDifficulty: string,
+        Experience: number,
+        Role: string
+    },
     Side: string,
     Voice: string,
-    Level: number,
-    Experience: number,
-    RegistrationDate: number,
-    GameVersion: string,
-    AccountType: number,
-    MemberCategory: number,
-    lockedMoveCommands: boolean,
-    SavageLockTime: number,
-    LastTimePlayedAsSavage: number,
-    Settings: {
-        Role: string,
-        BotDifficulty: string,
-        Experience: number
-    },
-    NeedWipe: boolean,
-    GlobalWipe: boolean,
-    NicknameChangeDate: number,
-    Bans: object[]
+    lastCompletedWipe: {[key: string]: string},
+    lockedMoveCommands: boolean
 }

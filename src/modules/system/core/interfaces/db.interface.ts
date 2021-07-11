@@ -1,6 +1,8 @@
+import { IBotBase } from "src/modules/misc/interfaces/botBase.instance";
+
 export interface IDatabase {
     base?: {
-        botBase?: string;
+        botBase?: IBotBase;
         botCore?: string;
         fleaOffer?: string;
         globals?: string;
