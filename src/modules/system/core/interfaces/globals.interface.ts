@@ -1,9 +1,9 @@
 export interface IGlobals {
-    BotWeaponScatterings: TBotWeaponScattering[],
-    HealthEffect: boolean,
-    ItemPresets: { [key: string]: TItemPreset },
-    bot_presets: TBotConfigs[],
-    config: {
+    BotWeaponScatterings?: TBotWeaponScattering[],
+    HealthEffect?: boolean,
+    ItemPresets?: { [key: string]: TItemPreset },
+    bot_presets?: TBotConfigs[],
+    config?: {
         "AimPunchMagnitude": number,
         "Aiming": {
             "AimProceduralIntensity": number,
@@ -1511,7 +1511,7 @@ export interface IGlobals {
             "limit": number
         }
     },
-    time: number
+    time?: number
 }
 
 type TRestrictionInRaid = {

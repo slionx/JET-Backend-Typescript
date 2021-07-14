@@ -1,8 +1,4 @@
-export type characterHideout = {
-    Production: object,
-    Areas: Area[]
-}
-type Area = {
+export type ThideoutArea = {
     type: number,
     level: number,
     active: boolean,

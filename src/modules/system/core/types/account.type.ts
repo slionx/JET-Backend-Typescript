@@ -1,4 +1,4 @@
-type accountInfo = {
+export type Taccount = {
     login: string,
     password: string,
 }
