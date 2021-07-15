@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Post, UseInterceptors } from '@nestjs/common';
-import { tarkovResponse } from '../system/core/types/tarkovResponse.type';
+import { Tresponse } from '../system/core/types/tarkov/response.type';
 import { InOutInterceptor } from '../system/interceptors/inout.interceptor';
 
 @Controller()
@@ -15,11 +15,11 @@ export class BattleController {
   '/singleplayer/settings/bot/difficulty': [Function],
 */
     @Post("client/locations")
-    getlocations(): string | tarkovResponse {
+    getlocations(): string | Tresponse {
             return "retrun all locations lol";
     }
     @Get("client/match/:action")
-    getMatch(@Param('action') action): string | tarkovResponse {
+    getMatch(@Param('action') action): string | Tresponse {
         switch(action){
             case "available": return "";
             case "exit": return "";
@@ -28,7 +28,7 @@ export class BattleController {
         }
     }    
     @Get("client/match/group/:action")
-    getMatchGroup(@Param('action') action): string | tarkovResponse {
+    getMatchGroup(@Param('action') action): string | Tresponse {
         switch(action){
             case "create": return "";
             case "delete": return "";
@@ -38,7 +38,7 @@ export class BattleController {
         }
     }
     @Get("client/match/group/:type/:action")
-    getMatchGroupSubType(@Param('type') type, @Param('action') action): string | tarkovResponse {
+    getMatchGroupSubType(@Param('type') type, @Param('action') action): string | Tresponse {
         if(type == "invite"){
             switch(action){
                 case "accept": return "";

@@ -8,7 +8,7 @@ import { TprofileSkills } from "./skills.type";
 import { TprofileStats } from "./stats.type";
 import { TprofileTraderInfo } from "./traderInfo.type";
 
-export type characterBase = {
+export type TprofileBase = {
     _id: string,
     aid: string,
     savage: string,

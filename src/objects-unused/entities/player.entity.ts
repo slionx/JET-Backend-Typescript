@@ -1,6 +1,6 @@
-import { UtilService } from "src/modules/system/util/util.service";
-import { BaseObject, ObjectType } from "../../modules/objects/base.object.class";
-import { IEntity } from "../../modules/objects/entity/player/interfaces/entity.interface";
+//import { UtilService } from "src/modules/system/util/util.service";
+//import { BaseObject, ObjectType } from "../../modules/objects/base.object.class";
+//import { IEntity } from "../../modules/objects/entity/player/interfaces/entity.interface";
 
 /* this needs to be converted to the other method and deleted
 export class Player extends BaseObject implements IEntity {

@@ -11,6 +11,10 @@ export class UtilService {
 
     getWorkingDir(){ return process.cwd(); }
 
+    removeReference(data: object){
+        return JSON.parse(JSON.stringify(data));
+    }
+
     jsonLoad(path: number | fs.PathLike) {
         return fs.readFileSync(path, "utf8");
     }

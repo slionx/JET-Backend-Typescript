@@ -1,12 +1,13 @@
 import { Logger } from "@nestjs/common";
-import { characterBase } from "src/modules/profile/types/characterBase.type";
-import { characterHideout } from "src/modules/profile/types/characterHideout.type";
-import { characterInventory } from "src/modules/profile/types/characterInventory.type";
-import { characterQuest } from "src/modules/profile/types/characterQuest.type";
-import { characterSkills } from "src/modules/profile/types/characterSkills.type";
-import { characterTraderStanding } from "src/modules/profile/types/traderStanding.type";
 import { UtilService } from "../../util/util.service";
 import { IUser } from "../interfaces/user.interface";
+import { Taccount } from "../types/account.type";
+import { TprofileBase } from "../types/profile/base.type";
+import { TprofileHideout } from "../types/profile/hideout.type";
+import { TprofileInventory } from "../types/profile/inventory.type";
+import { TprofileQuest } from "../types/profile/quest.type";
+import { TprofileSkills } from "../types/profile/skills.type";
+import { TprofileTraderInfo } from "../types/profile/traderInfo.type";
 import { Profile } from "./profile.entity";
 
 export class User implements IUser {
@@ -29,18 +30,18 @@ export class User implements IUser {
     }
 
     private loadUserData() {
-        const account = this.utilService.jsonLoadParse(`${this.userDataPath()}account.json`) as accountInfo;
+        const account = this.utilService.jsonLoadParse(`${this.userDataPath()}account.json`) as Taccount;
         this.login = account.login;
         this.password = account.password;
 
         this.profile = new Profile();
         this.profile.setProfileData(
-            this.utilService.jsonLoadParse(`${this.userDataPath()}character_base.json`) as characterBase,
-            this.utilService.jsonLoadParse(`${this.userDataPath()}character_hideout.json`) as characterHideout,
-            this.utilService.jsonLoadParse(`${this.userDataPath()}character_inventory.json`) as characterInventory,
-            this.utilService.jsonLoadParse(`${this.userDataPath()}character_quests.json`) as characterQuest[],
-            this.utilService.jsonLoadParse(`${this.userDataPath()}character_skills.json`) as characterSkills,
-            this.utilService.jsonLoadParse(`${this.userDataPath()}character_traders.json`) as { [key: string]: characterTraderStanding }
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_base.json`) as TprofileBase,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_hideout.json`) as TprofileHideout,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_inventory.json`) as TprofileInventory,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_quests.json`) as TprofileQuest[],
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_skills.json`) as TprofileSkills,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_traders.json`) as { [key: string]: TprofileTraderInfo }
         );
     }
 

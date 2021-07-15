@@ -1,4 +1,4 @@
-export type tarkovItem = {
+export type Titem = {
     _id: string,
     _tpl: string,
     parentId: string,
