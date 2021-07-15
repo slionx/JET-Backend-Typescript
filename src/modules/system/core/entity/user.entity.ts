@@ -7,11 +7,12 @@ import { characterSkills } from "src/modules/profile/types/characterSkills.type"
 import { characterTraderStanding } from "src/modules/profile/types/traderStanding.type";
 import { UtilService } from "../../util/util.service";
 import { IUser } from "../interfaces/user.interface";
+import { Profile } from "./profile.entity";
 
 export class User implements IUser {
-    login;
-    password;
-    private profile: characterBase;
+    login: string;
+    password: string;
+    profile: Profile;
     private _id: string;
     private readonly utilService = new UtilService();
     private readonly logger = new Logger("User");
@@ -22,23 +23,25 @@ export class User implements IUser {
         this.loadUserData();
         this.logger.log(`+ Profile: ${this._id}`);
     }
+
     private userDataPath(){
         return `${this.utilService.getWorkingDir()}/users/${this._id}/`;
     }
-    getProfile(){
-        return this.profile;
-    }
-    private loadUserData(){
+
+    private loadUserData() {
         const account = this.utilService.jsonLoadParse(`${this.userDataPath()}account.json`) as accountInfo;
         this.login = account.login;
         this.password = account.password;
 
-        this.profile = this.utilService.jsonLoadParse(`${this.userDataPath()}character_base.json`) as characterBase;
-        this.profile.Hideout = this.utilService.jsonLoadParse(`${this.userDataPath()}character_hideout.json`) as characterHideout;
-        this.profile.Inventory = this.utilService.jsonLoadParse(`${this.userDataPath()}character_inventory.json`) as characterInventory;
-        this.profile.Quests = this.utilService.jsonLoadParse(`${this.userDataPath()}character_quests.json`) as characterQuest[];
-        this.profile.Skills = this.utilService.jsonLoadParse(`${this.userDataPath()}character_skills.json`) as characterSkills;
-        this.profile.TraderStandings = this.utilService.jsonLoadParse(`${this.userDataPath()}character_traders.json`) as { [key: string]: characterTraderStanding };
+        this.profile = new Profile();
+        this.profile.setProfileData(
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_base.json`) as characterBase,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_hideout.json`) as characterHideout,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_inventory.json`) as characterInventory,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_quests.json`) as characterQuest[],
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_skills.json`) as characterSkills,
+            this.utilService.jsonLoadParse(`${this.userDataPath()}character_traders.json`) as { [key: string]: characterTraderStanding }
+        );
     }
 
     checkValidity(ver_login: string, ver_password: string) {
@@ -46,7 +49,4 @@ export class User implements IUser {
     }
 }
 
-export class Profile {
 
-    constructor(profileData: characterBase){}
-}

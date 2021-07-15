@@ -1,5 +1,5 @@
 export interface IUser {
     login?: string;
-    password?: number;
+    password?: string;
     checkValidity(ver_login: string, ver_password: string);
 }
