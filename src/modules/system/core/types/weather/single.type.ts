@@ -1,4 +1,4 @@
-type Weather = {
+export type TweatherSingle = {
     weather: {
 		timestamp: number,
 		cloud: number,
